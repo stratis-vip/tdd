@@ -1,3 +1,3 @@
 const roman = require('./my_lib').roman;
 
-console.log(roman(9));
+console.log(roman(4));

@@ -4,60 +4,34 @@ const roman = (integerValue) => {
     if (integerValue === 0 || integerValue === undefined) {
         return 'nulla';
     }
-    let retVal = '';
-    retVal = getVs(integerValue);
-    // integerValue = integerValue % 5;
-    // if (!integerValue) { return retVal; }
 
-    // if (belowFour(integerValue)) {
-    //     let counter = integerValue;
-    //     do {
-    //         retVal += getAnI();
-    //         counter--;
-    //     } while (counter >= 1);
-    // } else {
-    //     retVal = 'I' + retVal;
-    // }
+    let retVal = '';
+    if (integerValue === 1) { retVal = romans[1].symbol; }
+    const next = findNextValue(integerValue);
+    console.log(romans[next].value);
+    if (integerValue === romans[next].value - romans[next - 2].value) {
+        return romans[next - 2].symbol + romans[next].symbol;
+    }
+
+
+
     return retVal;
 };
 
-const getAnI = () => 'I';
-const getVs = (value) => {
-    const romans = [{ value: 10, symbol: 'X' }, { value: 5, symbol: 'V' }];
-    let localValue = value;
-    let retVal = '';
-    let lowSymbol = 'V';
-    let lowValue = 5;
-    for (let i = 0; i != romans.length; i++) {
-        if (localValue <= romans[i].value){
-            lowSymbol = romans[i].symbol;
-            lowValue = romans[i].value;
-        }
-        let howV = Math.floor(localValue / romans[i].value);
-        for (let j = 0; j !== howV; j++) {
-            retVal += romans[i].symbol;
-        }
-        localValue -= howV * romans[i].value;
+const findNextValue = (a) => {
+    for (let i = 0; i < len; i++) {
+        if (romans[i].value > a) { return i; }
     }
-    if (localValue === 0) {return retVal;}
-    if (belowFour(localValue)) {
-        let counter = localValue;
-        do {
-            retVal += getAnI();
-            counter--;
-        } while (counter >= 1);
-    } else {
-        // retVal = lowSymbol;
-        if (localValue !== lowValue)
-        retVal += 'I' + lowSymbol;
-    }
-    return retVal;
-};
+    return 0;
+}
+const romans = [{ value: 0, symbol: 'nulla' }, { value: 1, symbol: 'I' },
+{ value: 5, symbol: 'V' }, { value: 10, symbol: 'X' },];
 
-const belowFour = (a) => a < 4;
+let len = romans.length - 1;
+
+
 
 module.exports = {
-    add: add,
     roman: roman
-    
+
 };
