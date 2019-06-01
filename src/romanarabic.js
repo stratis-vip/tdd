@@ -31,7 +31,8 @@ const romanToArabicNumbers = (romanValue) => {
     if (typeof romanValue != 'string'){
         throw `${romanValue} is not a valid Roman numeral!`;
     }
-    let rmVal = romanValue.trim();
+    let rmVal = romanValue.trim().toUpperCase();
+    if (rmVal === 'NULLA') {return 0;}
 
     let negative = false;
     if (rmVal[0] === '-'){
