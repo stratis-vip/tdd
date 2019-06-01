@@ -1,6 +1,7 @@
 /*jshint -W030 */
 let MyLib = require('./my_lib');
-let roman = MyLib.roman;
+let roman = MyLib.arabicToRomanNumbers;
+let arabic = MyLib.romanToArabicNumbers;
 
 let expect = require('chai').expect;
 
@@ -53,8 +54,102 @@ describe('MyLib test', () => {
         it('roman 14 is XIV', function () {
             expect(roman(14)).to.equal('XIV');
         }); 
+        it('roman 15 is XV', function () {
+            expect(roman(15)).to.equal('XV');
+        }); 
+        it('roman 18 is XVIII', function () {
+            expect(roman(18)).to.equal('XVIII');
+        });
+        it('roman 19 is XIX', function () {
+            expect(roman(19)).to.equal('XIX');
+        });
+        it('roman 20 is XX', function () {
+            expect(roman(20)).to.equal('XX');
+        });
+        it('roman 26 is XXVI', function () {
+            expect(roman(26)).to.equal('XXVI');
+        });
+        it('roman 31 is XXXI', function () {
+            expect(roman(31)).to.equal('XXXI');
+        });
+        it('roman 39 is XXXIX', function () {
+            expect(roman(39)).to.equal('XXXIX');
+        });
+        it('roman 40 is XL', function () {
+            expect(roman(40)).to.equal('XL');
+        });
+
+        it('roman 50 is L', function () {
+            expect(roman(50)).to.equal('L');
+        });
+
+        it('roman 88 is LXXXVIII', function () {
+            expect(roman(88)).to.equal('LXXXVIII');
+        });
+        it('roman 98 is XCVIII', function () {
+            expect(roman(98)).to.equal('XCVIII');
+        });
+        it('roman 449 is CDXLIX', function () {
+            expect(roman(449)).to.equal('CDXLIX');
+        });
+        it('roman 894 is DCCCXCIV', function () {
+            expect(roman(894)).to.equal('DCCCXCIV');
+        });
+        it('roman 999 is CMXCIX', function () {
+            expect(roman(999)).to.equal('CMXCIX');
+        });
+        it('roman 999 is CMXCIX', function () {
+            expect(roman(999)).to.equal('CMXCIX');
+        });
         
+        it('roman 2019 is MMXIX', function () {
+            expect(roman(2019)).to.equal('MMXIX');
+        });
         
+        it('roman 4999 is MMMMCMXCIX', function () {
+            expect(roman(4999)).to.equal('MMMMCMXCIX');
+        });
+        it('roman 5894 is MMMMMDCCCXCIV', function () {
+            expect(roman(5894)).to.equal('MMMMMDCCCXCIV');
+        });  
+
+    });
+
+    describe('arabic', () => {
+        it('novalue is 0', () =>{
+            expect(arabic()).to.be.eq(0);
+        });
+        it('novalue is 0', () =>{
+            expect(arabic('')).to.be.eq(0);
+        });
+        it('novalue is 0', () =>{
+            expect(arabic('      ')).to.be.eq(0);
+        });
+        it('I is 1', () =>{
+            expect(arabic('I')).to.be.eq(1);
+        });
+        it('II is 2', () =>{
+            expect(arabic('II')).to.be.eq(2);
+        });
+        it('III is 3', () =>{
+            expect(arabic('III')).to.be.eq(3);
+        });
+        it('IV is 4', () =>{
+            expect(arabic('IV')).to.be.eq(4);
+        });
+        it('VI is 6', () =>{
+            expect(arabic('VI')).to.be.eq(6);
+        });
+        it('MMMMMDCCCXCIV is 5894', () =>{
+            expect(arabic('MMMMMDCCCXCIV')).to.be.eq(5894);
+        });
+        it('LXXXVIII is 88', () =>{
+            expect(arabic('LXXXVIII')).to.be.eq(88);
+        });
+        it('XLIX is 49', () =>{
+            expect(arabic('XLIX')).to.be.eq(49);
+        });
+
     });
 
 });

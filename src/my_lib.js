@@ -1,37 +1,64 @@
-const add = (a, b) => a + b;
-const roman = (integerValue) => {
+const arabicToRomanNumbers = (integerValue) => {
     //if integerValue is 0 or undefined
     if (integerValue === 0 || integerValue === undefined) {
         return 'nulla';
     }
-
     let retVal = '';
-    if (integerValue === 1) { retVal = romans[1].symbol; }
-    const next = findNextValue(integerValue);
-    console.log(romans[next].value);
-    if (integerValue === romans[next].value - romans[next - 2].value) {
-        return romans[next - 2].symbol + romans[next].symbol;
+    for (let i = 0; i < romans.length; i++) {
+        while (integerValue >= arabics[i]) {
+            retVal += romans[i];
+            integerValue -= arabics[i];
+        }
     }
-
-
 
     return retVal;
 };
 
-const findNextValue = (a) => {
-    for (let i = 0; i < len; i++) {
-        if (romans[i].value > a) { return i; }
+const romanToArabicNumbers = (romanValue) => {
+
+    if (romanValue === undefined) {
+        return 0;
+    }
+    let rmVal = romanValue.trim();
+    if (rmVal.length === 0) { return 0; }
+    let retVal = 0;
+    while (rmVal.length > 0) {
+        let local = readNextDigit(rmVal);
+        let indOfLocal = arabics.indexOf(local);
+        let len = romans[indOfLocal].length;
+        if (len < rmVal.length) {
+            rmVal = rmVal.substring(len, rmVal.length);
+        } else { rmVal = ''; }
+        retVal += local;
+    }
+    return retVal;
+};
+
+const romans = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+const arabics = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+
+const readNextDigit = (value) => {
+    let valueOfDigit = getFirstRomanDigit(value);
+    let indexOfValue = romans.indexOf(valueOfDigit);
+    if (indexOfValue != -1) {
+        return arabics[indexOfValue];
     }
     return 0;
-}
-const romans = [{ value: 0, symbol: 'nulla' }, { value: 1, symbol: 'I' },
-{ value: 5, symbol: 'V' }, { value: 10, symbol: 'X' },];
+};
 
-let len = romans.length - 1;
-
-
+const getFirstRomanDigit = (value) => {
+    if (value.length === 1) {
+        return value;
+    }
+    let twoDigit = value.slice(0, 2);
+    if (romans.indexOf(twoDigit) != -1) {
+        return twoDigit;
+    } else {
+        return value[0];
+    }
+};
 
 module.exports = {
-    roman: roman
-
+    arabicToRomanNumbers: arabicToRomanNumbers,
+    romanToArabicNumbers: romanToArabicNumbers
 };
