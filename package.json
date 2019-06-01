@@ -1,13 +1,13 @@
 {
-  "name": "tdd",
+  "name": "romanarabic",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Convert romans numeral to arabic numbers and vice versa",
+  "main": "romanarabic.js",
   "scripts": {
     "test": "mocha test/test.js",
     "example": "node example/main.js"
   },
-  "author": "",
+  "author": "Stratis Christodoulou",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.2.0",
