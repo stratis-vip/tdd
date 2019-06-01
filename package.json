@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha lib/test.js",
-    "build": "babel src --out-dir lib"
+    "test": "mocha test/test.js",
+    "example": "node example/main.js"
   },
   "author": "",
   "license": "ISC",
