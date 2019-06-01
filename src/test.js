@@ -1,5 +1,5 @@
 /*jshint -W030 */
-let MyLib = require('./my_lib');
+let MyLib = require('./romanarabic');
 let roman = MyLib.arabicToRomanNumbers;
 let arabic = MyLib.romanToArabicNumbers;
 
@@ -134,6 +134,9 @@ describe('MyLib test', () => {
         });
         it('novalue is 0', () =>{
             expect(arabic('      ')).to.be.eq(0);
+        });
+        it('nulla is 0', () => {
+            expect(arabic('nulla')).to.be.eq(0);
         });
         it('I is 1', () =>{
             expect(arabic('I')).to.be.eq(1);
