@@ -1,4 +1,6 @@
-const roman = require('./my_lib').roman;
-const arabic = require('./my_lib').romanToArabicNumbers;
+const toRoman = require('./romanarabic').arabicToRomanNumbers;
+const toArabic = require('./romanarabic').romanToArabicNumbers;
 
-console.log(arabic('IV'));
+console.log(toRoman(45));
+
+console.log(toArabic('XXIV'));

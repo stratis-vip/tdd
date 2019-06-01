@@ -4,6 +4,9 @@ let roman = MyLib.arabicToRomanNumbers;
 let arabic = MyLib.romanToArabicNumbers;
 
 let expect = require('chai').expect;
+var err = new TypeError('Illegal salmon!');
+err.code = 42;
+var badFn = function () { throw err; };
 
 describe('MyLib test', () => {
     it('has a module', () => {
@@ -14,7 +17,11 @@ describe('MyLib test', () => {
         it('novalue is nulla', function () {
             expect(roman()).to.equal('nulla');
         });
-
+        
+        it('-1 is I', function () {
+            expect(roman(-1)).to.equal('-I');
+        });
+        
         it('roman 0 is nulla', function () {
             expect(roman(0)).to.equal('nulla');
         });
@@ -112,6 +119,9 @@ describe('MyLib test', () => {
         it('roman 5894 is MMMMMDCCCXCIV', function () {
             expect(roman(5894)).to.equal('MMMMMDCCCXCIV');
         });  
+        it('ab is error', function () {
+            expect(()=>roman('ab')).to.throw('ab is not a valid number!');
+        });  
 
     });
 
@@ -128,6 +138,11 @@ describe('MyLib test', () => {
         it('I is 1', () =>{
             expect(arabic('I')).to.be.eq(1);
         });
+        
+        it('-IV is -4', () =>{
+            expect(arabic('-IV')).to.be.eq(-4);
+        });
+
         it('II is 2', () =>{
             expect(arabic('II')).to.be.eq(2);
         });
@@ -149,6 +164,14 @@ describe('MyLib test', () => {
         it('XLIX is 49', () =>{
             expect(arabic('XLIX')).to.be.eq(49);
         });
+        
+        it('XLIXBB is not a valid Roman numeral', () =>{
+            expect(()=>arabic('XLIXBB')).to.throw('XLIXBB is not a valid Roman numeral');
+        });
+        it('-B is not a valid Roman numeral', () =>{
+            expect(()=>arabic('-B')).to.throw('-B is not a valid Roman numeral');
+        });
+        
 
     });
 
