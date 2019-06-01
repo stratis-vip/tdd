@@ -34,6 +34,27 @@ Returns the number
 #### any invalid Roman number
 Throws an error
 
+## Prepare
+Run:
+```
+npm install
+```
+To run the example:
+```
+npm run example
+```
+To test the library:
+```
+npm run test
+```
+#### Usage
+Put romanarabic.js to your source code directory and:
+```javascript
+const toRoman = require('./romanarabic').arabicToRomanNumbers;
+const toArabic = require('./romanarabic').romanToArabicNumbers;
+```
+
+
 #### Example
 ```javascript
 const toRoman = require('./romanarabic').arabicToRomanNumbers;
@@ -45,3 +66,5 @@ console.log(toRoman(45));
 console.log(toArabic('XXIV'));
 //output 24
 ```
+
+
